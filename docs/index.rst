@@ -18,7 +18,7 @@ Changelog
 .. toctree::
    :maxdepth: 2
 
-   changelog.rst
+   CHANGELOG.rst
 
 
 Indices and tables
