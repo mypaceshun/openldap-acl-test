@@ -1,6 +1,7 @@
 # Python
 
 __pycache__
+dist
 
 # poetry
 .venv
