@@ -22,7 +22,8 @@ copyright = "2022, KAWAI Shun <mypaceshun@gmail.com>"
 author = "KAWAI Shun <mypaceshun@gmail.com>"
 
 # The full version, including alpha/beta/rc tags
-release = "0.9.0"
+from openldap_acl_test import __version__
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
