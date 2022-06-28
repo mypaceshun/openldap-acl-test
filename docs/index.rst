@@ -8,17 +8,28 @@ Welcome to OpenLDAP ACL Test's documentation!
 
 .. include:: ../README.rst
 
+Document
+--------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   quickstart.rst
+
+API Reference
+-------------
+
+.. toctree::
+   :maxdepth: 2
+
+   modules.rst
 
 Changelog
 ---------
 .. toctree::
    :maxdepth: 2
 
-   CHANGELOG.rst
+   changelog.rst
 
 
 Indices and tables

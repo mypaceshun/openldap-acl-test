@@ -3,22 +3,22 @@ acltest:
     - requester: cn=admin,dc=example,dc=com
       target: uid=testuser,ou=User,dc=example,dc=com
       acl: manage
-      attribute:
+      attributes:
         - objectClass
         - uid
         - cn
     - requester: cn=replica,dc=example,dc=com
       target: uid=testuser,ou=User,dc=example,dc=com
       acl: read
-      attribute:
+      attributes:
         - sn
     - requester: self
       target: uid=testuser,ou=User,dc=example,dc=com
       acl: read
-      attribute:
+      attributes:
         - sn
     - requester: anonymous
       target: uid=testuser,ou=User,dc=example,dc=com
       acl: none
-      attribute:
+      attributes:
         - sn

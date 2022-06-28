@@ -14,7 +14,7 @@ def test_testcase(success_conf):
                 "requester": "cn=admin,dc=example,dc=com",
                 "target": "uid=testuser,ou=User,dc=example,dc=com",
                 "acl": "manage",
-                "attribute": ["cn"],
+                "attributes": ["cn"],
             }
         ]
     }

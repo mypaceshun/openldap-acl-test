@@ -12,3 +12,6 @@ dist
 # pytest-cov
 .coverage
 coverage.xml
+
+# Sphinx
+build-docs
