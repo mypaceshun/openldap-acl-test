@@ -1,0 +1,24 @@
+acltest:
+  testcases:
+    - requester: cn=admin,dc=example,dc=com
+      target: uid=testuser,ou=User,dc=example,dc=com
+      acl: manage
+      attribute:
+        - objectClass
+        - uid
+        - cn
+    - requester: cn=replica,dc=example,dc=com
+      target: uid=testuser,ou=User,dc=example,dc=com
+      acl: read
+      attribute:
+        - sn
+    - requester: self
+      target: uid=testuser,ou=User,dc=example,dc=com
+      acl: read
+      attribute:
+        - sn
+    - requester: anonymous
+      target: uid=testuser,ou=User,dc=example,dc=com
+      acl: none
+      attribute:
+        - sn

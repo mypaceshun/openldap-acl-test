@@ -1,0 +1,2 @@
+[run]
+omit = src/openldap_acl_test/cli.py

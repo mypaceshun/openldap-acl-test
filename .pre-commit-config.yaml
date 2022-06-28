@@ -41,4 +41,5 @@ repos:
   hooks:
   - id: mypy
     additional_dependencies:
-      - "types-setuptools==57.4.12"
+      - "types-setuptools"
+      - "types-PyYAML"
