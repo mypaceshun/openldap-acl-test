@@ -1,6 +1,7 @@
 import pytest
-from openldap_acl_test.testcase import ACL, ACLTestCase, ACLTestResult
+
 from openldap_acl_test.exceptions import ACLCheckError, ACLNoCheckAttributeError
+from openldap_acl_test.testcase import ACL, ACLTestCase, ACLTestResult
 
 
 def test_ACL():
@@ -29,14 +30,23 @@ def test_testcase():
     assert testcase.attributes == []
 
 
-@pytest.mark.parametrize("requester,target,acl,attributes,expect_args", [
-    ("A", "B","read", None, ["-D", "A", "-b", "B"]),
-    ("A", "B", "write", ["cn"], ["-D", "A", "-b", "B", "cn/write"]),
-    ("A", "B", "none", ["cn"], ["-D", "A", "-b", "B", "cn"]),
-    ("A", "B", "manage", ["cn", "sn"], ["-D", "A", "-b", "B", "cn/manage", "sn/manage"]),
-    ("self", "B", "write", ["cn"], ["-D", "B", "-b", "B", "cn/write"]),
-    ("anonymous", "B", "write", ["cn"], ["-b", "B", "cn/write"]),
-    ])
+@pytest.mark.parametrize(
+    "requester,target,acl,attributes,expect_args",
+    [
+        ("A", "B", "read", None, ["-D", "A", "-b", "B"]),
+        ("A", "B", "write", ["cn"], ["-D", "A", "-b", "B", "cn/write"]),
+        ("A", "B", "none", ["cn"], ["-D", "A", "-b", "B", "cn"]),
+        (
+            "A",
+            "B",
+            "manage",
+            ["cn", "sn"],
+            ["-D", "A", "-b", "B", "cn/manage", "sn/manage"],
+        ),
+        ("self", "B", "write", ["cn"], ["-D", "B", "-b", "B", "cn/write"]),
+        ("anonymous", "B", "write", ["cn"], ["-b", "B", "cn/write"]),
+    ],
+)
 def test_testcase_get_slapacl_args(requester, target, acl, attributes, expect_args):
     testcase = ACLTestCase(requester, target, acl, attributes)
     args = testcase.get_slapacl_args()
@@ -69,6 +79,7 @@ def test_testcase__check_slapacl_no_check():
     with pytest.raises(ACLNoCheckAttributeError):
         testcase._check_slapacl(before_text, after_text)
 
+
 def test_testcase__check_slapacl_error():
     acl = "read"
     attributes = ["cn"]
@@ -93,6 +104,7 @@ def test_testcase__check_slapacl_none():
     msg = testcase._check_slapacl_none(before_text, after_text)
     assert isinstance(msg, str)
 
+
 def test_testcase__check_slapacl_none_no_check():
     acl = "read"
     attributes = ["cn"]
@@ -111,6 +123,7 @@ def test_testcase__check_slapacl_none_error():
     after_text = "read(=0)"
     with pytest.raises(ACLCheckError):
         testcase._check_slapacl_none(before_text, after_text)
+
 
 def test_testcase_get_count():
     testcase = ACLTestCase("A", "B")
